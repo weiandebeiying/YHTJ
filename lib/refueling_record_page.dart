@@ -45,9 +45,9 @@ class _RefuelingRecordPageState extends State<RefuelingRecordPage> {
                 });
                 if (ids.endsWith(',')) {
                   ids = ids.substring(0, ids.length - 1);
+                  await RefuelingRecordSqlUtil().delRefuelingRecords(ids);
+                  EventBus().emit('add');
                 }
-                await RefuelingRecordSqlUtil().delRefuelingRecords(ids);
-                EventBus().emit('add');
               }
               setState(() {
                 if (isDel) {
